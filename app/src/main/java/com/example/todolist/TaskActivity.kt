@@ -43,6 +43,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task)
 
+        //dateEdt - id of date ,timeEdt - id of time,saveBtn - id of saveBtn
         dateEdt.setOnClickListener(this)
         timeEdt.setOnClickListener(this)
         saveBtn.setOnClickListener(this)
@@ -50,16 +51,18 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setUpSpinner() {
+        //ArrayAdapter is used to view data in list View
         val adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels)
-
         labels.sort()
 
         spinnerCategory.adapter = adapter
     }
 
+    
     override fun onClick(v: View) {
         when (v.id) {
+            //When date section is Clicked setListener function is called
             R.id.dateEdt -> {
                 setListener()
             }
@@ -121,13 +124,16 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setListener() {
+        //Calender.getInstance provide current system time.
         myCalendar = Calendar.getInstance()
 
         dateSetListener =
             DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                //setting myCalender instance with system time.
                 myCalendar.set(Calendar.YEAR, year)
                 myCalendar.set(Calendar.MONTH, month)
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                //Updating date to the format.
                 updateDate()
 
             }
@@ -147,6 +153,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
         finalDate = myCalendar.time.time
         dateEdt.setText(sdf.format(myCalendar.time))
 
+        //It will make time section visible.
         timeInPlay.visibility = View.VISIBLE
 
     }
