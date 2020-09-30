@@ -41,7 +41,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_task)
+        setContentView(R.layout.activity_task) // to load activity, R is resources
 
         //dateEdt - id of date ,timeEdt - id of time,saveBtn - id of saveBtn
         dateEdt.setOnClickListener(this)
@@ -56,12 +56,12 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels)
         labels.sort()
 
-        spinnerCategory.adapter = adapter
+        spinnerCategory.adapter = adapter // spinnerCategory is unique id for each view 
     }
 
     
     override fun onClick(v: View) {
-        when (v.id) {
+        when (v.id) { // when is switch
             //When date section is Clicked setListener function is called
             R.id.dateEdt -> {
                 setListener()
@@ -146,7 +146,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
         datePickerDialog.show()
     }
 
-    private fun updateDate() {
+    private fun updateDate() { // typecasting
         //Mon, 5 Jan 2020
         val myformat = "EEE, d MMM yyyy"
         val sdf = SimpleDateFormat(myformat)
